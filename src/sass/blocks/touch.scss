@@ -85,9 +85,11 @@
 @media screen and (min-width: 768px) {
     .touch {
         &__form {
-            position: relative;
             width: 300px;
             padding-left: 24px;
+            &-wrapper {
+                position: relative;
+            }
         }
         &__decor {
             display: block;
@@ -101,7 +103,7 @@
 
 @media screen and (min-width: 1200px) {
     .touch {
-        &_img {
+        &__img {
             display: block;
             width: 550px;
             height: 342px;
