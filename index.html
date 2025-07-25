@@ -130,6 +130,7 @@
 								placeholder="Question"
 								required
 							></textarea>
+							<div class="error-message"></div>
 
 							<label class="touch__label touch__check-block" for="checkbox">
 								<input
@@ -138,8 +139,8 @@
 									type="checkbox"
 									id="checkbox"
 								/>
-								I agree with the <a href="#">terms</a></label
-							>
+								I agree with the <a href="#">terms</a></label>
+								<div class="checkbox-error-message"></div>
 							<button class="btn-send touch__btn">send request</button>
 							<img src="/src/img/form/vase.png" alt="vase" class="touch__decor" />
 						</form>
@@ -185,10 +186,12 @@
 						<div class="footer__text  footer__text_spaced">Keep up to date with news and promotions</div>
 						<form action ="#" class="footer__form">
 							<input
+							id="footer__email"
 							placeholder="Enter your e-mail"
 							class="footer__input"
 							required
 							/>
+							<div class="email-error-message"></div>
 							<label class="footer__check-block" for="footer__checkbox">
 								<input
 								required
@@ -198,6 +201,7 @@
 								/>
                                 I agree with the <a href="#">terms</a>
 								</lebel>
+								<div class="check-error-message"></div>
 								<button class="btn-submit footer__form-btn">
 									submit
 								</button>

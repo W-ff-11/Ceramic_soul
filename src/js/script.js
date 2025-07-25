@@ -1,6 +1,7 @@
 import Swiper from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
 
+import JustValidate from 'just-validate';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -64,4 +65,111 @@ try {
 
 	// Показываем первый контент при загрузке
 	contents.forEach((c, i) => (c.style.display = i === 0 ? "flex" : "none"));
+} catch (e) {}
+
+try {
+const validator = new JustValidate('form', {submitFormAutomatically: false});
+
+validator
+   .addField('#name', [
+    {
+      rule: 'required',
+	  errorMessage: 'Введите имя'
+	},
+    {
+      rule: 'minLength',
+      value: 3,
+	  errorMessage: 'Имя должно иметь минимум 3 символа'
+    },
+  ])
+  .addField('#email', [
+    {
+      rule: 'required',
+	  errorMessage: 'Введите адресс эл. почты'
+    },
+    {
+      rule: 'email',
+	  errorMessage: 'Некорректный адресс'
+    },
+  ])
+  .addField('#question', [
+    {
+      rule: 'required',
+	  errorMessage: 'Введите минимум 5 символов'
+    },
+    {
+      rule: 'minLength',
+      value: 5,
+	  errorMessage: 'Введите минимум 5 символов'
+    },
+  ],
+   {
+	errorsContainer: document.querySelector('#question')
+	.parentElement.querySelector('.error-message')
+  }
+)
+  .addField(
+	'#checkbox', 
+	[
+      {
+        rule: 'required',
+	    errorMessage: 'Поставьте галочку'
+      },
+  ],
+{
+	errorsContainer: document.querySelector('#checkbox')
+	.parentElement.parentElement.querySelector('.checkbox-error-message')
+  }
+).onSuccess(( event ) => {
+    const form = event.currentTarget;
+	const formData = new FormData(form);
+
+	fetch("https://httpbin.org/post",{
+		method: "POST",
+		body: formData,
+	}).then(res => res.json()).then(data => {
+		console.log('Success', data);
+		form.reset();
+	})
+});
+} catch (e) {}
+
+
+try { 
+const validatorFooter = new JustValidate(".footer__form");
+
+	validatorFooter
+		.addField(
+			"#footer__email",
+			[
+				{
+					rule: 'required',
+	                errorMessage: 'Введите адресс эл. почты'
+				},
+				{
+					rule: "email",
+	                errorMessage: 'Некорректный адресс'
+				},
+			],
+			{
+				errorsContainer: document
+					.querySelector("#footer__email")
+					.parentElement.querySelector(".email-error-message"),
+			}
+		)
+		.addField(
+			"#footer__checkbox",
+			[
+				{
+					rule: "required",
+					errorMessage: 'Поставьте галочку'
+				}, 
+			],
+			{
+				errorsContainer: document
+					.querySelector("#footer__checkbox")
+					.parentElement.parentElement
+					.querySelector(".check-error-message"),
+			}
+		);
 } catch (e) {}

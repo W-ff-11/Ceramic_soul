@@ -1,7 +1,22 @@
 @use "/src/sass/base/variables.scss" as *;
 
+
+
 .touch {
+    input[type="checkbox"].just-validate-error-field {
+    outline: none;
+  }
+    .just-validate-error-label {
+        font-size: 15px;
+        margin-top: 5px;
+        font-weight: 400;
+        line-height: normal;
+}
     padding-top: 60px;
+    .just-validate-error-field {
+        border: none;
+        outline: 1px solid $ui-error;
+    }
     &__wrapper {
         margin-top: 60px;
 }
@@ -147,5 +162,5 @@
 		&__decor {
 			right: 75px;
 		}
-   }
+    }
 }   
